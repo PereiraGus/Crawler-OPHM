@@ -4,6 +4,7 @@ import datetime as dt #Biblioteca dataHora: pegar a data e hora atual
 from urllib3 import PoolManager #Biblioteca urllib3: cliente HTTP para Python
 import sys #Biblioteca sys: recarregar o buffer do print()
 from pick import pick #Biblioteca pick: menu controlado por setas
+import keyboard as kb #Biblioteca teclado: capturar teclas pressionadas pelo usuário
 
 def conversor(valor):
     return float(valor[0:4].replace(",", '.'))
@@ -31,7 +32,8 @@ while True:
         print("Carregando...")
         with PoolManager() as pool:
             while True:
-
+                if(kb.is_pressed('esc')):
+                    break
                 try:
                     response = pool.request('GET', 'http://localhost:9000/data.json',
                                             timeout=1.0,retries=1)# Timeout de 1 segundo com 1 tentativa
@@ -66,11 +68,11 @@ while True:
                     print("\t• RAM Utilizada: "+ramUsada,end="\t")
                     print("\t• RAm Livre: "+ramLivre,end="\n\n")
 
-                    print("="*100,end="\n")
+                    print("="*39," Segure ESC para sair ","="*39,end="\n")
 
                     t.sleep(tempoAtualizacao)
                 except:
-                    print("="*100,end="\n\n")
+                    print("="*39," Segure ESC para sair ","="*39,end="\n\n")
                     print("[!] O servidor do Open Hardware Monitor não foi detectado")
                     print("Siga as instruções abaixo para iniciá-lo:")
                     print("\t1. Abra seu Open Hardware Monitor.")
