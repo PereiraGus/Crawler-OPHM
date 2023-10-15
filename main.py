@@ -7,9 +7,6 @@ import sys #Biblioteca sys: fechar o programa
 from capturar_dados import capturarDados
 from configuracoes import abrir_configuracoes
 
-def conversor(valor):
-    return float(valor[0:4].replace(",", '.'))
-
 tempo_atualizacao = 1
 guardar_no_banco = 1
 
@@ -25,7 +22,7 @@ while True:
             while True:
                 if(kb.is_pressed('esc')):
                     break
-                capturarDados(pool,tempo_atualizacao)
+                capturarDados(pool,tempo_atualizacao,guardar_no_banco)
 
     elif(option == 'Opções'):
         configuracoes_definidas = abrir_configuracoes(tempo_atualizacao,guardar_no_banco)
