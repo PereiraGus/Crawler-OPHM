@@ -15,7 +15,7 @@ def abrir_configuracoes(p_tempo,p_banco,p_csv):
     if(p_csv == 1): opcao_csv += "sim"
     else: opcao_csv += "não"
 
-    title = 'Opções'
+    title = 'Configurações'
     options = [opcao_tempo,opcao_banco,opcao_csv,'Voltar']
     option, index = pick(options, title,"→")
 
