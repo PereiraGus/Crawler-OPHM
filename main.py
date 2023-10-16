@@ -26,7 +26,7 @@ while True:
 Arte: https://www.asciiart.eu/animals/spiders
 
 (Utilize as setas para cima e para baixo para escolher uma opção)"""
-    options = ['Iniciar','Opções','Sair']
+    options = ['Iniciar','Configurações','Sair']
     option, index = pick(options, title,"→")
 
     if(option == 'Iniciar'):
@@ -37,7 +37,7 @@ Arte: https://www.asciiart.eu/animals/spiders
                     break
                 capturarDados(pool,tempo_atualizacao,guardar_no_banco,guardar_em_csv)
 
-    elif(option == 'Opções'):
+    elif(option == 'Configurações'):
         configuracoes_definidas = abrir_configuracoes(tempo_atualizacao,guardar_no_banco,guardar_em_csv)
         tempo_atualizacao = configuracoes_definidas[0]
         guardar_no_banco = configuracoes_definidas[1]
