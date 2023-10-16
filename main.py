@@ -12,8 +12,20 @@ guardar_no_banco = 0
 guardar_em_csv = 1
 
 while True:
-    title = """API Crawler do Open Hardware Monitor
-    (Utilize as setas para cima e para baixo para escolher uma opção)"""
+    title = """
+     \_______/
+ `.,-'\_____/`-.,'
+  /`..'\ _ /`.,'\\
+ /  /`.,' `.,'\  \    Open
+/__/__/     \__\__\__ Hardware
+\  \  \     /  /  /   Crawler
+ \  \,'`._,'`./  /
+  \,'`./___\,'`./
+ ,'`-./_____\,-'`.
+     /       \\
+Arte: https://www.asciiart.eu/animals/spiders
+
+(Utilize as setas para cima e para baixo para escolher uma opção)"""
     options = ['Iniciar','Opções','Sair']
     option, index = pick(options, title,"→")
 
