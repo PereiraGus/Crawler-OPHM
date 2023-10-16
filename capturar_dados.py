@@ -2,10 +2,10 @@ from json import loads #Biblioteca json: ler arquivos JSON
 import time as t # Biblioteca tempo: pausar a execução do programa
 import datetime as dt #Biblioteca dataHora: pegar a data e hora atual
 
-from guardar_banco import inserir_banco
+from guardar_dados import inserir_banco, gravar_csv
 from erro import acusar_erro
 
-def capturarDados(pool, tempo_atualizacao, guardar_banco):
+def capturarDados(pool, tempo_atualizacao, guardar_banco, guardar_csv):
     try:
         response = pool.request('GET', 'http://localhost:9000/data.json',
                                 timeout=1.0,retries=1)# Timeout de 1 segundo com 1 tentativa
@@ -40,18 +40,20 @@ def capturarDados(pool, tempo_atualizacao, guardar_banco):
         print("\t• RAM Utilizada: "+ram_usada,end="\t")
         print("\t• RAm Livre: "+ram_livre,end="\n\n")
 
-        if(guardar_banco == 1):
-            infos = {
-                'nome_pc':pc,
-                'cpu_modelo':cpu_modelo,
-                'cpu_temp':cpu_temperatura,
-                'cpu_uso':cpu_pct_uso,
-                'cpu_energia':cpu_energia,
-                'ram_uso':ram_pct_uso,
-                'ram_utilizada':ram_usada,
-                'ram_livre':ram_livre
-            }
+        infos = {
+            'nome_pc':pc,
+            'cpu_modelo':cpu_modelo,
+            'cpu_temp':cpu_temperatura,
+            'cpu_uso':cpu_pct_uso,
+            'cpu_energia':cpu_energia,
+            'ram_uso':ram_pct_uso,
+            'ram_utilizada':ram_usada,
+            'ram_livre':ram_livre
+        }
+        if(guardar_banco == 1):  
             inserir_banco(infos)
+        if(guardar_csv == 1):
+            gravar_csv(infos)
         
         print("="*39," Segure ESC para sair ","="*39,end="\n")
         t.sleep(tempo_atualizacao)

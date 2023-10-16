@@ -8,7 +8,8 @@ from capturar_dados import capturarDados
 from configuracoes import abrir_configuracoes
 
 tempo_atualizacao = 1
-guardar_no_banco = 1
+guardar_no_banco = 0
+guardar_em_csv = 1
 
 while True:
     title = """API Crawler do Open Hardware Monitor
@@ -22,12 +23,13 @@ while True:
             while True:
                 if(kb.is_pressed('esc')):
                     break
-                capturarDados(pool,tempo_atualizacao,guardar_no_banco)
+                capturarDados(pool,tempo_atualizacao,guardar_no_banco,guardar_em_csv)
 
     elif(option == 'Opções'):
-        configuracoes_definidas = abrir_configuracoes(tempo_atualizacao,guardar_no_banco)
+        configuracoes_definidas = abrir_configuracoes(tempo_atualizacao,guardar_no_banco,guardar_em_csv)
         tempo_atualizacao = configuracoes_definidas[0]
         guardar_no_banco = configuracoes_definidas[1]
+        guardar_em_csv = configuracoes_definidas[2]
 
     elif(option == 'Sair'):
         sys.exit()

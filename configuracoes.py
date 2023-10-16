@@ -1,17 +1,22 @@
 from pick import pick #Biblioteca pick: menu controlado por setas
 
-def abrir_configuracoes(p_tempo,p_banco):
+def abrir_configuracoes(p_tempo,p_banco,p_csv):
     tempo_atualizacao = p_tempo
     guardar_no_banco = p_banco
+    guardar_csv = p_csv
+
     opcao_tempo = 'Tempo de atualização: '+str(tempo_atualizacao)
 
-    texto_banco = ""
-    if(guardar_no_banco == 1): texto_banco = "Sim"
-    else: texto_banco = "Não"
-    opcao_banco = 'Salvar no banco de dados: '+str(texto_banco)
+    opcao_banco = 'Salvar no banco de dados: '
+    if(guardar_no_banco == 1): opcao_banco += "sim"
+    else: opcao_banco += "não"
+
+    opcao_csv = 'Salvar para arquivo CSV: '
+    if(p_csv == 1): opcao_csv += "sim"
+    else: opcao_csv += "não"
 
     title = 'Opções'
-    options = [opcao_tempo,opcao_banco,'Voltar']
+    options = [opcao_tempo,opcao_banco,opcao_csv,'Voltar']
     option, index = pick(options, title,"→")
 
     if(option == opcao_tempo):
@@ -30,4 +35,14 @@ def abrir_configuracoes(p_tempo,p_banco):
         else:
             guardar_no_banco = 0
     
-    return [tempo_atualizacao,guardar_no_banco]
+    if(option == opcao_csv):
+        title = 'Salvar informações capturadas em arquivo CSV'
+        options = ['Sim','Não']
+        option, index = pick(options, title,"→")
+
+        if(option == 'Sim'):
+            guardar_csv = 1
+        else:
+            guardar_csv = 0
+
+    return [tempo_atualizacao,guardar_no_banco,guardar_csv]
