@@ -8,7 +8,7 @@ from capturar_dados import capturarDados
 from configuracoes import abrir_configuracoes
 
 tempo_atualizacao = 1
-guardar_no_banco = 0
+guardar_no_banco = 1
 guardar_em_csv = 1
 
 while True:

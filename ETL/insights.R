@@ -41,6 +41,7 @@ insight_energia <- function(){
   print(paste("Gasto com eletricidade: R$",round(kW*0.649,2)))
 }
 
-insight_cpu_ram()
 insight_pc_cpu()
+insight_cpu_ram()
 insight_temperatura()
+insight_energia()
