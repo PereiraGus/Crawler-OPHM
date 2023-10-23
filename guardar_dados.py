@@ -54,15 +54,15 @@ def inserir_banco(infos):
         acusar_erro('banco',e)
 
 def gravar_csv(infos):
-    infos['cpu_temp'] = infos['cpu_temp']
-    infos['cpu_uso'] = infos['cpu_uso']
-    infos['cpu_energia'] = infos['cpu_energia']
-    infos['ram_uso'] = infos['ram_uso']
-    infos['ram_utilizada'] = infos['ram_utilizada']
-    infos['ram_livre'] = infos['ram_livre']
+    infos['cpu_temp'] = conversor(cortador(infos['cpu_temp'],3))
+    infos['cpu_uso'] = conversor(cortador(infos['cpu_uso'],2))
+    infos['cpu_energia'] = conversor(cortador(infos['cpu_energia'],2))
+    infos['ram_uso'] = conversor(cortador(infos['ram_uso'],2))
+    infos['ram_utilizada'] = conversor(cortador(infos['ram_utilizada'],3))
+    infos['ram_livre'] = conversor(cortador(infos['ram_livre'],3))
 
     now = dt.datetime.now()
-    nomeArquivo = "dados"+now.strftime("%d-%m-%Y")+".csv"
+    nomeArquivo = "logs/dados"+now.strftime("%d-%m-%Y")+".csv"
 
     try:
         arquivo = open(nomeArquivo,"x")
